@@ -1,0 +1,98 @@
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f4f8f8;
+  --ink: #2e3536;
+  --surface: #ffffff;
+  --surface-alt: rgba(46, 60, 59, 0.035);
+  --surface-hi: rgba(46, 60, 59, 0.06);
+  --border: rgba(44, 62, 60, 0.11);
+  --text: #4a5556;
+  --text-dim: #707c7d;
+  --text-h: #2e3536;
+
+  --teal: #42a49d;
+  --teal-dark: #2f8a83;
+  --teal-deep: #2b3434;
+  --teal-tint: #eaf4f3;
+  --teal-lite: #8fd8d0;
+
+  --grad: linear-gradient(120deg, var(--teal), #4fb5ad 55%, var(--teal-dark));
+
+  --sans: 'Outfit', system-ui, sans-serif;
+  --display: 'Space Grotesk', system-ui, sans-serif;
+
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* native smooth scrolling is disabled — Lenis handles scrolling and
+   conflicts with CSS scroll-behavior */
+html {
+  scroll-behavior: initial;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100svh;
+  position: relative;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  color: var(--text-h);
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+p {
+  margin: 0;
+  color: var(--text-dim);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--teal);
+  color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-alt);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--teal);
+  border-radius: 10px;
+  opacity: 0.5;
+}

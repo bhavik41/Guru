@@ -1,25 +1,50 @@
 :root {
+  /* --- surfaces: warm bone pairs with industrial photography;
+         cold pastel read as generic medical-SaaS --- */
   --bg: #ffffff;
-  --bg-alt: #f4f8f8;
-  --ink: #2e3536;
+  --bone: #f2f1ec;
+  --bone-deep: #e8e6df;
+  --ink: #0f1c1b;
+  --ink-soft: #1b2a28;
+
+  --text-h: #0f1c1b;
+  --text: #45524f;
+  --text-dim: #6d7a77;
+
+  --border: rgba(15, 28, 27, 0.14);
+  --border-soft: rgba(15, 28, 27, 0.08);
+  --border-dark: rgba(255, 255, 255, 0.16);
+
+  --teal: #2f8a83;
+  --teal-dark: #226a64;
+  --teal-lite: #7fccc4;
+  --teal-tint: #e6efee;
+
+  /* legacy aliases still referenced by a few blocks */
+  --bg-alt: var(--bone);
+  --teal-deep: var(--ink);
   --surface: #ffffff;
-  --surface-alt: rgba(46, 60, 59, 0.035);
-  --surface-hi: rgba(46, 60, 59, 0.06);
-  --border: rgba(44, 62, 60, 0.11);
-  --text: #4a5556;
-  --text-dim: #707c7d;
-  --text-h: #2e3536;
 
-  --teal: #42a49d;
-  --teal-dark: #2f8a83;
-  --teal-deep: #2b3434;
-  --teal-tint: #eaf4f3;
-  --teal-lite: #8fd8d0;
+  /* --- radii: industrial = square. one small value, nothing else --- */
+  --r: 2px;
+  --r-pill: 999px;
 
-  --grad: linear-gradient(120deg, var(--teal), #4fb5ad 55%, var(--teal-dark));
+  /* --- spacing scale --- */
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 32px;
+  --s5: 48px;
+  --s6: 64px;
+  --s7: 96px;
+  --s8: 128px;
+
+  --gutter: 32px;
+  --maxw: 1240px;
 
   --sans: 'Outfit', system-ui, sans-serif;
   --display: 'Space Grotesk', system-ui, sans-serif;
+  --display-xl: 'Bebas Neue', 'Space Grotesk', system-ui, sans-serif;
 
   color-scheme: light;
   font-synthesis: none;
@@ -89,10 +114,8 @@ img, svg {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-alt);
+  background: var(--bone);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--teal);
-  border-radius: 10px;
-  opacity: 0.5;
 }

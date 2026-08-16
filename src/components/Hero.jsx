@@ -4,21 +4,9 @@ import Icon from './Icon'
 import Magnetic from './Magnetic'
 import { contact, stats } from '../data'
 
-const H1_LINES = [
-  [{ t: 'Industrial' }, { t: '&' }, { t: 'Medical' }],
-  [{ t: 'Gases,' }, { t: 'Engineered', grad: true }],
-  [{ t: 'for' }, { t: 'Reliability' }],
-]
-
-const wordV = {
-  hidden: { opacity: 0, y: '0.55em', rotate: 3, filter: 'blur(8px)' },
-  show: {
-    opacity: 1,
-    y: 0,
-    rotate: 0,
-    filter: 'blur(0px)',
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-  },
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  show: (d) => ({ opacity: 1, y: 0, transition: { duration: 0.8, delay: d, ease: [0.22, 1, 0.36, 1] } }),
 }
 
 function useCountUp(target, start) {
@@ -40,122 +28,81 @@ function useCountUp(target, start) {
   return value
 }
 
-function Stat({ value, label, suffix }) {
+function HeroStat({ value, label, suffix }) {
   const [inView, setInView] = useState(false)
   const num = useCountUp(value, inView)
   return (
     <motion.div
-      className="stat"
+      className="hstat"
       onViewportEnter={() => setInView(true)}
       viewport={{ once: true, amount: 0.8 }}
     >
-      <span className="stat-num">{num}<em>{suffix}</em></span>
-      <span className="stat-label">{label}</span>
+      <span className="hstat-num">{num}<em>{suffix}</em></span>
+      <span className="hstat-label">{label}</span>
     </motion.div>
   )
-}
-
-const FEATURES = [
-  { icon: 'shield', title: 'Certified Quality', desc: 'ISO & BIS compliant products meeting global standards' },
-  { icon: 'truck', title: '24×7 Supply Chain', desc: 'Uninterrupted delivery across Gujarat & beyond' },
-  { icon: 'bolt', title: 'On-Site Generation', desc: 'PSA plants for continuous oxygen & nitrogen supply' },
-]
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  show: (d) => ({ opacity: 1, y: 0, transition: { duration: 0.7, delay: d, ease: [0.22, 1, 0.36, 1] } }),
 }
 
 export default function Hero() {
   return (
     <section id="home" className="hero">
-      <div className="hero-blob hero-blob-a" />
-      <div className="hero-blob hero-blob-b" />
-      <div className="hero-grid-dots" />
+      <div className="hero-photo">
+        <img src="/plant/plant-refinery-delivery.jpg" alt="Guru Industries tanker delivering at a client refinery" />
+      </div>
+      <div className="hero-scrim" />
 
-      <div className="section-inner hero-center">
-        <motion.div className="hero-badge" variants={fadeUp} initial="hidden" animate="show" custom={0}>
-          <span className="pulse-dot" />
-          Manufacturer · Trader · Supplier — Since 2011
+      <div className="section-inner hero-inner">
+        <motion.div
+          className="hero-meta"
+          variants={fadeUp} initial="hidden" animate="show" custom={0.05}
+        >
+          <span>GJ / India</span>
+          <i />
+          <span>Est. 2011</span>
+          <i />
+          <span>Industrial &amp; Medical Gases</span>
         </motion.div>
 
         <motion.h1
-          className="hero-h1-center"
+          className="hero-h1"
           initial="hidden"
           animate="show"
-          variants={{ show: { transition: { staggerChildren: 0.09, delayChildren: 0.15 } } }}
+          variants={{ show: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } } }}
         >
-          {H1_LINES.map((line, li) => (
-            <span className="h1-line" key={li}>
-              {line.map((w) => (
-                <motion.span
-                  key={w.t}
-                  className={`h1-word ${w.grad ? 'grad-text' : ''}`}
-                  variants={wordV}
-                >
-                  {w.t}
-                </motion.span>
-              ))}
-            </span>
-          ))}
+          <motion.span className="h1-row" variants={fadeUp} custom={0}>GAS SUPPLY FOR</motion.span>
+          <motion.span className="h1-row h1-accent" variants={fadeUp} custom={0.08}>OPERATIONS THAT</motion.span>
+          <motion.span className="h1-row" variants={fadeUp} custom={0.16}>NEVER STOP.</motion.span>
         </motion.h1>
 
-        <motion.p className="hero-sub hero-sub-center" variants={fadeUp} initial="hidden" animate="show" custom={0.2}>
-          From oxygen to rare noble gases — Guru Industries delivers the full
-          spectrum of industrial gases, medical gases &amp; chemicals, synchronized
-          with global quality standards.
+        <motion.p className="hero-sub" variants={fadeUp} initial="hidden" animate="show" custom={0.4}>
+          Industrial &amp; medical gases, chemical supply and field services —
+          configured for exacting, uninterrupted operations across India.
         </motion.p>
 
-        <motion.div className="hero-cta hero-cta-center" variants={fadeUp} initial="hidden" animate="show" custom={0.3}>
+        <motion.div className="hero-cta" variants={fadeUp} initial="hidden" animate="show" custom={0.5}>
           <Magnetic>
-            <a href="#products" className="btn btn-solid btn-lg">Explore Products <Icon name="arrow" size={16} /></a>
+            <a href="#contact" className="btn btn-solid btn-lg">Get a Quote <Icon name="arrow" size={16} /></a>
           </Magnetic>
           <Magnetic>
-            <a href={contact.whatsapp} target="_blank" rel="noopener" className="btn btn-ghost btn-lg">
-              <span className="wa-dot" /> WhatsApp Us
-            </a>
+            <a href="#products" className="btn btn-outline-light btn-lg">Explore Products</a>
           </Magnetic>
         </motion.div>
 
-        <motion.div className="hero-trust hero-trust-center" variants={fadeUp} initial="hidden" animate="show" custom={0.45}>
+        <motion.div className="hero-trust" variants={fadeUp} initial="hidden" animate="show" custom={0.6}>
           <span className="hero-trust-label">Trusted by</span>
           <span className="hero-trust-names">Reliance · Cairn · Linde · Vedanta · Halliburton <b>+15 more</b></span>
-        </motion.div>
-
-        <motion.div
-          className="hero-features"
-          initial="hidden"
-          animate="show"
-          variants={{ show: { transition: { staggerChildren: 0.1, delayChildren: 0.55 } } }}
-        >
-          {FEATURES.map((f) => (
-            <motion.div
-              key={f.title}
-              className="hero-feature-card"
-              variants={fadeUp}
-              custom={0}
-            >
-              <span className="hero-feature-icon"><Icon name={f.icon} size={22} /></span>
-              <div>
-                <strong>{f.title}</strong>
-                <p>{f.desc}</p>
-              </div>
-            </motion.div>
-          ))}
         </motion.div>
       </div>
 
       <motion.div
-        className="section-inner hero-stats-wrap"
-        initial={{ opacity: 0, y: 30 }}
+        className="hero-stats-strip"
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="hero-stats">
-          {stats.map((s) => (
-            <Stat key={s.label} value={s.value} label={s.label} suffix={s.suffix} />
-          ))}
-        </div>
+        {stats.slice(1, 4).map((s) => (
+          <HeroStat key={s.label} value={s.value} label={s.label} suffix={s.suffix} />
+        ))}
       </motion.div>
     </section>
   )

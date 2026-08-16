@@ -27,29 +27,23 @@ export default function Products() {
           </Reveal>
         </div>
 
-        <Reveal delay={0.1}>
-          <div className="filter-tabs">
-            {productCategories.map((c) => (
+        <div className="products-layout">
+          <Reveal delay={0.1} className="filter-rail">
+            {productCategories.map((c, i) => (
               <button
                 key={c}
                 className={`filter-tab ${cat === c ? 'is-active' : ''}`}
                 onClick={() => setCat(c)}
               >
-                {cat === c && (
-                  <motion.span
-                    layoutId="tab-pill"
-                    className="tab-pill"
-                    transition={{ type: 'spring', stiffness: 420, damping: 34 }}
-                  />
-                )}
+                <span className="tab-idx">{String(i + 1).padStart(2, '0')}</span>
                 <span className="tab-label">{c}</span>
                 <span className="filter-count">
                   {c === 'All' ? products.length : products.filter((p) => p.cat === c).length}
                 </span>
+                {cat === c && <Icon name="arrow" size={14} className="tab-arrow" />}
               </button>
             ))}
-          </div>
-        </Reveal>
+          </Reveal>
 
         <motion.div className="product-grid" layout>
           <AnimatePresence mode="popLayout">
@@ -82,6 +76,7 @@ export default function Products() {
             ))}
           </AnimatePresence>
         </motion.div>
+        </div>
       </div>
 
       <Modal open={!!active} onClose={() => setActive(null)}>
